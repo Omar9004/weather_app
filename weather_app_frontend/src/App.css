@@ -1,0 +1,24 @@
+.App {
+  background-color: #eee;
+  width: 100vw;
+  height: 100vh;
+}
+
+
+.Search_bar_container{
+  padding-top: 20vh;
+  width: 40%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 200px;
+}
+.weather_cond_img{
+  position: absolute;
+  height:250px;
+  width:250px;
+  
+  left: 800px;
+  top: 300px;
+}
