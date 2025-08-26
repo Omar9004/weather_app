@@ -1,7 +1,10 @@
 .App {
-  background-color: #eee;
-  width: 100vw;
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* still center horizontally */
+  justify-content: flex-start;  /* keep content at the top */
+  min-height: 100vh;
+  background: #f3f3f3;  /* optional */
 }
 
 
@@ -14,11 +17,25 @@
   align-items: center;
   min-width: 200px;
 }
-.weather_cond_img{
-  position: absolute;
-  height:250px;
-  width:250px;
-  
-  left: 800px;
-  top: 300px;
+
+.weather_footer {
+  position: fixed;      /* stays in place when scrolling */
+  bottom: 10px;         /* 10px above bottom */
+  left: 15px;           /* 15px from left */
+  font-size: 0.9rem;    /* smaller font */
+  color: #666;
+  font-style: italic;
+  background: rgba(255, 255, 255, 0.8); /* light background for readability */
+  padding: 5px 10px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  background-color: #63bfd8;
+  padding: 10px 20px;
+  color: white;
+  text-align: left;   /* make sure text goes left */
+  width: 100%;        /* stretch full width */
+  margin: 0;          /* remove default h1 margin */
 }

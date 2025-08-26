@@ -5,6 +5,7 @@
 import './App.css';
 
 import { SearchBar } from '../components/search_bar';
+import { Weather_con } from '../components/weather_con';
 import {useState, useEffect} from "react";
 
 
@@ -14,8 +15,13 @@ import {useState, useEffect} from "react";
 
 function App() {
   const [sResult, setSResult] = useState([]);
-  const [dataApi, setData] = useState();
-  const [imageState, setImageState] = useState("/images/sunny.png");
+  let emptyJson = {
+    "temp": 0,
+    "weatherCon": "",
+    "location": "",
+    "lastUpdate": ""
+}
+  const [dataApi, setData] = useState(emptyJson);
   const fetch_data = (city)=>{
     if(sResult.length!=0){
       fetch(`http://127.0.0.1:8000/weather_data/data/?city=${encodeURIComponent(city)}`)
@@ -36,44 +42,27 @@ function App() {
     fetch_data(sResult)
   },[sResult]);
 
-  useEffect (()=>{
-    if(!dataApi) return;
-    switch(dataApi.weatherCon.toLowerCase()){
-          case "sunny":
-            setImageState("/images/sunny.png");
-            break;
-          case "partly cloudy":
-            setImageState( "/images/partaly_cloudy.png");
-            break;
-          case "cloudy":
-            setImageState( "/images/cloudy.png");
-            break;
-          case "Heavy rain":
-          case "Moderate rain":
-          case "Light rain": 
-          case "Light drizzle":
-            setImageState("/images/kinshasarainy.png");
-            break;
-          default:
-            setImageState("/images/sunny.png"); 
-            break;
-        }
-    
-  },[dataApi])
+  
 
 
   return (
     <div className="App">
-     <div className='Search_bar_container'>
+      <h1 className='header'>
+        Weather App
+      </h1>
+     <div>
         <SearchBar sResult={(callBackResult)=>{
           setSResult(callBackResult);
         }}/>
       </div>
-
       <div> 
-        <img className="weather_cond_img" src = {imageState}/>
+        <Weather_con weather_data={dataApi}/>
       </div>
+      <footer className='weather_footer'>
+      Last updated: {dataApi.lastUpdate}
+      </footer>
     </div>
+    
   );
 }
 

@@ -5,3 +5,8 @@
 .search_bar_result:hover {
   background-color: #efefef;
 }
+
+.search_bar_result.active{
+  background-color: royalblue;
+  color: white;
+}
